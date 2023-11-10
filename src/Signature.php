@@ -1,4 +1,5 @@
 <?php
+namespace Javed\TencentCmq;
 /**
  * Sign
  * 签名类

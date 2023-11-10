@@ -1,0 +1,17 @@
+{
+    "name": "javed/tencent-cmq-php",
+    "description": "tencent cloud cmq php http client sdk",
+    "type": "library",
+    "authors": [
+        {
+            "name": "name",
+            "email": "email@email.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Javed\\TencentCmq\\": "src/"
+        }
+    }
+}

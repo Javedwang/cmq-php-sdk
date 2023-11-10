@@ -1,7 +1,5 @@
 <?php
-require_once CMQAPI_ROOT_PATH . '/cmq_exception.php';
-require_once CMQAPI_ROOT_PATH . '/cmq_http.php';
-require_once CMQAPI_ROOT_PATH . '/sign.php';
+namespace Javed\TencentCmq;
 
 class CMQClient
 {
@@ -20,7 +18,7 @@ class CMQClient
         $this->version = $version;
         $this->method = $method;
         $this->sign_method='HmacSHA1';
-        $this->http = new CMQHttp($this->host);
+        $this->http = new CMQHttp($host);
     }
 
     protected function process_host($host) {
@@ -101,8 +99,11 @@ class CMQClient
 
         $resp = json_decode($resp_inter->data, TRUE);
         $code = $resp['code'];
-        $message = $resp['message'];
-        $requestId = $resp['requestId'];
+	$message = $resp['message'];
+	if(isset($resp['requestId']))
+        	$requestId = $resp['requestId'];
+	else
+		$requestId='0';
 
         if ($code != 0) {
             throw new CMQServerException($message=$message, $request_id=$requestId, $code=$code, $data=$resp);
